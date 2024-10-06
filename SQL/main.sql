@@ -19,8 +19,8 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_User]'))
-BEGIN5
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_User]'))
+BEGIN
 	ALTER TABLE [User] ADD CONSTRAINT PK_User PRIMARY KEY(UserId)
 END
 GO
@@ -37,7 +37,7 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_Customer]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_Customer]'))
 BEGIN
 	ALTER TABLE [Customer] ADD CONSTRAINT PK_Customer PRIMARY KEY(CustomerId)
 END
@@ -57,7 +57,7 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_Address]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_Address]'))
 BEGIN
 	ALTER TABLE [Address] ADD CONSTRAINT PK_Address PRIMARY KEY(AddressId)
 END
@@ -69,7 +69,7 @@ BEGIN
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_Customer_Address]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_Customer_Address]'))
 BEGIN
 	ALTER TABLE [Address] ADD CONSTRAINT FK_Customer_Address FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId)
 END
@@ -89,7 +89,7 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_WasteType]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_WasteType]'))
 BEGIN
 	ALTER TABLE [WasteType] ADD CONSTRAINT PK_WasteType PRIMARY KEY(WasteTypeId)
 END
@@ -109,19 +109,19 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_CollectionRequest]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_CollectionRequest]'))
 BEGIN
 	ALTER TABLE [CollectionRequest] ADD CONSTRAINT PK_CollectionRequest PRIMARY KEY(RequestId)
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionRequest_Customer]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionRequest_Customer]'))
 BEGIN
 	ALTER TABLE [CollectionRequest] ADD CONSTRAINT FK_CollectionRequest_Customer FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId)
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionRequest_WasteType]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionRequest_WasteType]'))
 BEGIN
 	ALTER TABLE [CollectionRequest] ADD CONSTRAINT FK_CollectionRequest_WasteType FOREIGN KEY (WasteTypeId) REFERENCES WasteType(WasteTypeId)
 END
@@ -141,13 +141,13 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_WasteCollector]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_WasteCollector]'))
 BEGIN
 	ALTER TABLE [WasteCollector] ADD CONSTRAINT PK_WasteCollector PRIMARY KEY(CollectorId)
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_WasteCollector_User]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_WasteCollector_User]'))
 BEGIN
 	ALTER TABLE [WasteCollector] ADD CONSTRAINT FK_WasteCollector_User FOREIGN KEY (UserId) REFERENCES [User](UserId)
 END
@@ -165,7 +165,7 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_Truck]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_Truck]'))
 BEGIN
 	ALTER TABLE [Truck] ADD CONSTRAINT PK_Truck PRIMARY KEY(TruckId)
 END
@@ -184,7 +184,7 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_Route]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_Route]'))
 BEGIN
 	ALTER TABLE [Route] ADD CONSTRAINT PK_Route PRIMARY KEY(RouteId)
 END
@@ -205,31 +205,31 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_CollectionAssignment]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_CollectionAssignment]'))
 BEGIN
 	ALTER TABLE [CollectionAssignment] ADD CONSTRAINT PK_CollectionAssignment PRIMARY KEY(AssignmentId)
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionAssignment_Request]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionAssignment_Request]'))
 BEGIN
-	ALTER TABLE [CollectionAssignment] ADD CONSTRAINT FK_CollectionAssignment_request FOREIGN KEY (RequestId) REFERENCES CollectionRequest(RequestrId)
+	ALTER TABLE [CollectionAssignment] ADD CONSTRAINT FK_CollectionAssignment_request FOREIGN KEY (RequestId) REFERENCES CollectionRequest(RequestId)
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionRequest_Collector]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionAssignment_Collector]'))
 BEGIN
 	ALTER TABLE [CollectionAssignment] ADD CONSTRAINT FK_CollectionAssignment_Collector FOREIGN KEY (CollectorId) REFERENCES WasteCollector(CollectorId)
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionRequest_Truck]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionAssignment_Truck]'))
 BEGIN
 	ALTER TABLE [CollectionAssignment] ADD CONSTRAINT FK_CollectionAssignment_Truck FOREIGN KEY (TruckId) REFERENCES Truck(TruckId)
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionRequest_Route]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_CollectionAssignment_Route]'))
 BEGIN
 	ALTER TABLE [CollectionAssignment] ADD CONSTRAINT FK_CollectionAssignment_Route FOREIGN KEY (RouteId) REFERENCES [Route](RouteId)
 END
@@ -247,7 +247,7 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_WasteDisposalFacility]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_WasteDisposalFacility]'))
 BEGIN
 	ALTER TABLE [WasteDisposalFacility] ADD CONSTRAINT PK_WasteDisposalFacility PRIMARY KEY(FacilityId)
 END
@@ -267,19 +267,19 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[PK_DisposalRecord]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[PK_DisposalRecord]'))
 BEGIN
 	ALTER TABLE [DisposalRecord] ADD CONSTRAINT PK_DisposalRecord PRIMARY KEY(RecordId)
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_DisposalRecord_Truck]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_DisposalRecord_Truck]'))
 BEGIN
 	ALTER TABLE [DisposalRecord] ADD CONSTRAINT FK_DisposalRecord_Truck FOREIGN KEY (TruckId) REFERENCES Truck(TruckId)
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys  WHERE object_id = OBJECT_ID(N'[dbo].[FK_DisposalRecord_Facility]'))
+IF NOT EXISTS (SELECT 1 FROM sys.objects  WHERE object_id = OBJECT_ID(N'[dbo].[FK_DisposalRecord_Facility]'))
 BEGIN
 	ALTER TABLE [DisposalRecord] ADD CONSTRAINT FK_DisposalRecord_Facility FOREIGN KEY (FacilityId) REFERENCES WasteDisposalFacility(FacilityId)
 END
