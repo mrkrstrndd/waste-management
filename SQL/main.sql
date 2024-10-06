@@ -284,3 +284,4 @@ BEGIN
 	ALTER TABLE [DisposalRecord] ADD CONSTRAINT FK_DisposalRecord_Facility FOREIGN KEY (FacilityId) REFERENCES WasteDisposalFacility(FacilityId)
 END
 GO
+
