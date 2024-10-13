@@ -1,0 +1,6 @@
+@WasteManagement_HostAddress = http://localhost:5192
+
+GET {{WasteManagement_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
