@@ -17,6 +17,6 @@ export class AppComponent {
   }
 
   login() {
-    this.httpClient.get('https://localhost:44311/api/User').subscribe(data => console.log(data))
+    // this.httpClient.get('https://localhost:44311/api/User').subscribe(data => console.log(data))
   }
 }
